@@ -8,6 +8,8 @@ public class PlumberScript : MonoBehaviour
     [SerializeField]
     float speed;
 
+    float timer = 3;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +19,15 @@ public class PlumberScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer -= Time.deltaTime;
+
+        Debug.Log(timer);
+
+        if (timer < 0)
+        {
+            rb.AddForce(new Vector2(Random.Range(-5,5) * speed, Random.Range(-5, 5) * speed));
+
+            timer = 5;
+        }
     }
 }

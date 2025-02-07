@@ -24,7 +24,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //contraint the y so that the platform does not go offscreen
+        if (transform.position.y < -4)
+        {
+            transform.position = new Vector3(transform.position.x, -4, transform.position.z);
+        }
     }
 
     public void MovePlayer(Vector2 vector2)
@@ -44,9 +48,9 @@ public class PlayerScript : MonoBehaviour
     internal void MouseMovePlayer()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
-        Debug.Log(mousePos);
+        //Debug.Log(mousePos);
         //rb.AddForce(Vector2.MoveTowards(transform.position, mousePos,1) * speed);
-        rb.AddForce(mousePos * speed);
+        rb.AddForce(mousePos * speed );
 
 
 

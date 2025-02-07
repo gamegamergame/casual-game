@@ -11,6 +11,11 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
+
+    }
+
+    private void FixedUpdate()
+    {
         if (Input.GetMouseButton(0))
         {
             pScript.MouseMovePlayer();
