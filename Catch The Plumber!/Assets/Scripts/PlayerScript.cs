@@ -15,6 +15,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     float speed;
 
+    const float floorPos = -4; 
+    const float cielingPos = 4.5f; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,9 +28,13 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         //contraint the y so that the platform does not go offscreen
-        if (transform.position.y < -4)
+        if (transform.position.y < floorPos)
         {
-            transform.position = new Vector3(transform.position.x, -4, transform.position.z);
+            transform.position = new Vector3(transform.position.x, floorPos, transform.position.z);
+        }
+        if (transform.position.y > cielingPos)
+        {
+            transform.position = new Vector3(transform.position.x, cielingPos, transform.position.z);
         }
     }
 
@@ -50,7 +57,7 @@ public class PlayerScript : MonoBehaviour
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
         //Debug.Log(mousePos);
         //rb.AddForce(Vector2.MoveTowards(transform.position, mousePos,1) * speed);
-        rb.AddForce(mousePos * speed );
+        rb.AddForce(mousePos.normalized * speed );
 
 
 
