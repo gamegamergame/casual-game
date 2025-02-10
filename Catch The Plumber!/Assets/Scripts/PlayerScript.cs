@@ -57,10 +57,7 @@ public class PlayerScript : MonoBehaviour
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
         //Debug.Log(mousePos);
         //rb.AddForce(Vector2.MoveTowards(transform.position, mousePos,1) * speed);
-        rb.AddForce(mousePos.normalized * speed );
-
-
-
+        rb.AddForce(mousePos.normalized * speed);
 
     }
 }

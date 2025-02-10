@@ -21,7 +21,7 @@ public class PlumberScript : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        Debug.Log(timer);
+        //Debug.Log(timer);
 
         if (timer < 0)
         {

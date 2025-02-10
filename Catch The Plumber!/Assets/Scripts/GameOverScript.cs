@@ -18,7 +18,7 @@ public class GameOverScript : MonoBehaviour
 
     void OnTriggerEnter2D()
     {
-        plumber.transform.position = new Vector2(0,0);
+        plumber.transform.position = new Vector2(0,4);
         plumber.linearVelocity = Vector2.zero;
     }
 }
