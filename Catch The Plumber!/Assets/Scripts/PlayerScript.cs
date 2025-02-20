@@ -55,9 +55,11 @@ public class PlayerScript : MonoBehaviour
     internal void MouseMovePlayer()
     {
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
-        //Debug.Log(mousePos);
-        //rb.AddForce(Vector2.MoveTowards(transform.position, mousePos,1) * speed);
-        rb.AddForce(mousePos.normalized * speed);
 
+        // Get direction from player to mouse
+        Vector2 direction = (mousePos - transform.position).normalized;
+
+        // Apply force in that direction
+        rb.AddForce(direction * speed);
     }
 }
