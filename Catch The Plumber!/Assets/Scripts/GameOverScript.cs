@@ -11,7 +11,7 @@ public class GameOverScript : MonoBehaviour
     [SerializeField]
     Transform playerPos;
 
-    int lives = 100;
+    int lives = 3;
 
     [SerializeField]
     TMP_Text livesText;
