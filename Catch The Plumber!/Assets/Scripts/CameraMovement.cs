@@ -6,6 +6,9 @@ public class CameraFollow : MonoBehaviour
     public float leftBoundary = 2f; // Distance from left edge before camera moves
     public float rightBoundary = 2f; // Distance from right edge before camera moves
     public float smoothSpeed = 5f;
+    public float scrollSpeed = 100f; // Constant auto-scroll speed
+    public float maxCatchupSpeed = 200f; // Maximum speed to catch up if player moves too fast
+    public float catchupThreshold = 5f; // Distance threshold before boosting speed
 
     private float halfScreenWidth;
 
@@ -24,9 +27,23 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 targetPosition = transform.position;
 
+        // Calculate how far the player is ahead of the camera center
+        float playerOffset = playerX - transform.position.x;
+
+        // Adjust scroll speed dynamically
+        float dynamicScrollSpeed = scrollSpeed;
+        if (playerOffset > catchupThreshold)
+        {
+            // If the player gets too far ahead, increase scroll speed up to maxCatchupSpeed
+            dynamicScrollSpeed = Mathf.Lerp(scrollSpeed, maxCatchupSpeed, (playerOffset - catchupThreshold) / catchupThreshold);
+        }
+
+        // Apply auto-scroll
+        targetPosition.x += dynamicScrollSpeed * Time.deltaTime;
+
         if (playerX < cameraLeft + leftBoundary)
         {
-            targetPosition.x = playerX - leftBoundary + halfScreenWidth;
+            //targetPosition.x = playerX - leftBoundary + halfScreenWidth;
         }
         else if (playerX > cameraRight - rightBoundary)
         {

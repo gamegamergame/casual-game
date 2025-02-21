@@ -562,6 +562,9 @@ MonoBehaviour:
   leftBoundary: 5
   rightBoundary: 5
   smoothSpeed: 5
+  scrollSpeed: 100
+  maxCatchupSpeed: 2000
+  catchupThreshold: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1451,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 4661200327488229375, guid: b3330e3a2ef8b6647ba8ac8fe0b516fa, type: 3}
   player: {fileID: 1925842211}
   maxX: 5
-  spawnInterval: 5
+  spawnInterval: 10
 --- !u!4 &1351225443
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -469.7, y: 243}
+  m_AnchoredPosition: {x: -432.6, y: 243}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551769561

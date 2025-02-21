@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     Camera cam;
 
-
     Rigidbody2D rb;
 
     [SerializeField]

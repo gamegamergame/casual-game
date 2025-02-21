@@ -11,7 +11,7 @@ public class GameOverScript : MonoBehaviour
     [SerializeField]
     Transform playerPos;
 
-    int lives = 3;
+    int lives = 100;
 
     [SerializeField]
     TMP_Text livesText;
@@ -31,6 +31,11 @@ public class GameOverScript : MonoBehaviour
         if (lives <= 0)
         {
             SceneManager.LoadScene(1);
+        }
+
+        if (playerPos.position.x < Camera.main.transform.position.x - (Camera.main.orthographicSize * Camera.main.aspect))
+        {
+            lives -= 100;
         }
     }
 

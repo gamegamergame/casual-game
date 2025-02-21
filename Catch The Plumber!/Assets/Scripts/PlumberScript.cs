@@ -8,7 +8,7 @@ public class PlumberScript : MonoBehaviour
     [SerializeField]
     float speed;
 
-    float timer = 3;
+    float timer = 5;
 
 
 
@@ -27,7 +27,7 @@ public class PlumberScript : MonoBehaviour
 
         if (timer < 0)
         {
-            rb.AddForce(new Vector2(Random.Range(-5,5) * speed, Random.Range(-5, 5) * speed));
+            rb.AddForce(new Vector2(Random.Range(1,5) * speed, Random.Range(1, 5) * speed));
 
             timer = 5;
         }
