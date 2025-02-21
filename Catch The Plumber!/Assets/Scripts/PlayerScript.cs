@@ -15,7 +15,10 @@ public class PlayerScript : MonoBehaviour
     float speed;
 
     const float floorPos = -4; 
-    const float cielingPos = 4.5f; 
+    const float cielingPos = 4.5f;
+
+    [SerializeField]
+    Transform leftWall;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +37,10 @@ public class PlayerScript : MonoBehaviour
         if (transform.position.y > cielingPos)
         {
             transform.position = new Vector3(transform.position.x, cielingPos, transform.position.z);
+        }
+        if (transform.position.x < leftWall.position.x)
+        {
+            transform.position = new Vector3(leftWall.position.x, transform.position.y, transform.position.z);
         }
     }
 
