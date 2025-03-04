@@ -18,8 +18,8 @@ public class Spawner : MonoBehaviour
         float minY = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).y;
         float maxY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
 
-        float randomX = Random.Range(player.position.x + 3, player.position.x + 3 + maxX);
-        float randomY = Random.Range(minY , maxY);
+        float randomX = Random.Range(player.position.x + 15, player.position.x + 15 + maxX);
+        float randomY = Random.Range(minY + 1f, maxY);
         Vector2 spawnPosition = new Vector2(randomX, randomY);
 
         Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);

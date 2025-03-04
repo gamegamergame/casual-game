@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6eae57331326673499f8bfd25552a84b
+guid: be6d67de62c269d468111a1549b66dce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7843528343720318559
-    second: Pixel Mario_0
+      213: -8831425973768609744
+    second: Platform Sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 3
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
-  spriteBorder: {x: 202, y: 0, z: 394, w: 274}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pixel Mario_0
+      name: Platform Sprite_0
       rect:
         serializedVersion: 2
-        x: 203
-        y: 107
-        width: 602
-        height: 818
+        x: 0
+        y: 0
+        width: 640
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a9a7d63780362390800000000000000
-      internalID: -7843528343720318559
+      spriteID: 0302d552ed8707580800000000000000
+      internalID: -8831425973768609744
       vertices: []
       indices: 
       edges: []
@@ -125,8 +125,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pixel Mario_0: -7843528343720318559
+      Platform Sprite_0: -8831425973768609744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

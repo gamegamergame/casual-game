@@ -10,6 +10,8 @@ public class PlumberScript : MonoBehaviour
 
     float timer = 5;
 
+    [SerializeField]
+    float shakeIntensity = 0.05f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +26,13 @@ public class PlumberScript : MonoBehaviour
         timer -= Time.deltaTime;
 
         //Debug.Log(timer);
+
+        //shaking animation before jump
+        if (timer < 1f) //Shake only in the last second
+        {
+            float shakeOffset = Mathf.Sin(Time.time * 100) * shakeIntensity;
+            transform.position += new Vector3(shakeOffset, 0, 0);
+        }
 
         if (timer < 0)
         {
