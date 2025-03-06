@@ -1,3 +1,4 @@
+using UnityEditor.MPE;
 using UnityEngine;
 
 public class PlumberScript : MonoBehaviour
@@ -5,27 +6,40 @@ public class PlumberScript : MonoBehaviour
 
     Rigidbody2D rb;
 
-    [SerializeField]
-    float speed;
+    CapsuleCollider2D plumberCollider;
 
-    float timer = 5;
+    [SerializeField]
+    float runSpeed;
+
+    [SerializeField]
+    float jumpSpeed;
+
+    float timer = 1.5f;
 
     [SerializeField]
     float shakeIntensity = 0.05f;
+
+
+    public enum movementStates
+    {
+        Running,
+        Jumping
+    }
+    movementStates currentState;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        plumberCollider = GetComponent<CapsuleCollider2D>();
+        currentState = movementStates.Running;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
 
-        //Debug.Log(timer);
 
         //shaking animation before jump
         if (timer < 1f) //Shake only in the last second
@@ -34,11 +48,39 @@ public class PlumberScript : MonoBehaviour
             transform.position += new Vector3(shakeOffset, 0, 0);
         }
 
-        if (timer < 0)
-        {
-            rb.AddForce(new Vector2(Random.Range(1,5) * speed, Random.Range(1, 5) * speed));
 
-            timer = 5;
+        //check if plumber is on the platform in order to jump
+        if (plumberCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        {
+            timer -= Time.deltaTime;
+
+            //if on platform after 1.5 seconds switch to jump state
+            if (timer < 0)
+            {
+                currentState = movementStates.Jumping;
+
+                timer = 1.5f;
+            }
+        }
+        
+
+        //adds a constant force towards the right
+        if (currentState == movementStates.Running) 
+        {
+            rb.AddForce(new Vector2(runSpeed, 0));
+        }
+
+        //adds a constant force towards the right
+        else if (currentState == movementStates.Jumping)
+        {
+            rb.AddForce(new Vector2(jumpSpeed, jumpSpeed));
+
+            //changeToJumpState();
+            currentState = movementStates.Running;
         }
     }
+
+    //void changeToJumpState()
+    //{
+    //}
 }

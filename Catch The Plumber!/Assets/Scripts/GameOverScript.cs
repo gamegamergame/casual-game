@@ -80,12 +80,5 @@ public class GameOverScript : MonoBehaviour
         plumber.gravityScale = 1;
 
         isSpawning = false;
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-
-
     }
 }

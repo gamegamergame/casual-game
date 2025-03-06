@@ -1258,7 +1258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7e0da396d5bf841947d45eb687e10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  runSpeed: 0.5
+  jumpSpeed: 200
   shakeIntensity: 0.02
 --- !u!1 &1164510301
 GameObject:
@@ -2023,7 +2024,7 @@ GameObject:
   - component: {fileID: 1925842213}
   - component: {fileID: 1925842212}
   - component: {fileID: 1925842214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
