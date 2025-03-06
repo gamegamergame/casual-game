@@ -17,6 +17,8 @@ public class GameOverScript : MonoBehaviour
     [SerializeField]
     TMP_Text livesText;
 
+    bool isSpawning = false;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +41,12 @@ public class GameOverScript : MonoBehaviour
         {
             //lives -= 100;
         }
+
+        //make sure the plumber follows the camera as he is spawning
+        if (isSpawning) 
+        {
+            plumber.transform.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
+        }
     }
 
     void OnTriggerEnter2D()
@@ -50,16 +58,20 @@ public class GameOverScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// respawns plumber in the center of the screen stops all motion and deactivates collider after 2 seconds everything goes back to normal
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SpawnDelay()
     {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
         CapsuleCollider2D plumberCollider = plumber.GetComponent<CapsuleCollider2D>();
+        isSpawning = true;
 
         plumber.gravityScale = 0;
-        plumber.transform.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
         plumber.linearVelocity = Vector2.zero;
         plumber.angularVelocity = 0;
+        plumber.rotation = 0;
+
         plumberCollider.enabled = false;
 
         yield return new WaitForSecondsRealtime(2);
@@ -67,6 +79,7 @@ public class GameOverScript : MonoBehaviour
         plumberCollider.enabled = true;
         plumber.gravityScale = 1;
 
+        isSpawning = false;
 
         //yield on a new YieldInstruction that waits for 5 seconds.
 
