@@ -1,4 +1,3 @@
-using UnityEditor.MPE;
 using UnityEngine;
 
 public class PlumberScript : MonoBehaviour
@@ -19,13 +18,13 @@ public class PlumberScript : MonoBehaviour
     [SerializeField]
     float shakeIntensity = 0.05f;
 
-
-    public enum movementStates
+    public enum plumberStates
     {
         Running,
-        Jumping
+        Jumping,
+        Spawning
     }
-    movementStates currentState;
+    public plumberStates currentState;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +32,8 @@ public class PlumberScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         plumberCollider = GetComponent<CapsuleCollider2D>();
-        currentState = movementStates.Running;
+        currentState = plumberStates.Spawning;
+
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class PlumberScript : MonoBehaviour
             //if on platform after 1.5 seconds switch to jump state
             if (timer < 0)
             {
-                currentState = movementStates.Jumping;
+                currentState = plumberStates.Jumping;
 
                 timer = 1.5f;
             }
@@ -65,19 +65,25 @@ public class PlumberScript : MonoBehaviour
         
 
         //adds a constant force towards the right
-        if (currentState == movementStates.Running) 
+        if (currentState == plumberStates.Running) 
         {
             rb.AddForce(new Vector2(runSpeed, 0));
         }
 
         //adds a constant force towards the right
-        else if (currentState == movementStates.Jumping)
+        else if (currentState == plumberStates.Jumping)
         {
             rb.AddForce(new Vector2(jumpSpeed, jumpSpeed));
 
             //changeToJumpState();
-            currentState = movementStates.Running;
+            currentState = plumberStates.Running;
         }
+
+        else if (currentState == plumberStates.Spawning)
+        {
+
+        }
+        Debug.Log(currentState);
     }
 
     //void changeToJumpState()
