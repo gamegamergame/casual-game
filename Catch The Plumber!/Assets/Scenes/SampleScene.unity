@@ -568,12 +568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150d93e99787adf44b9dc2d0fd2d65d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plumberRB: {fileID: 1126864940}
-  plumberScript: {fileID: 1126864943}
-  playerPos: {fileID: 1925842211}
-  livesText: {fileID: 1551769561}
-  distanceText: {fileID: 1122892991}
-  plumberIndicator: {fileID: 1285820382}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781401229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150d93e99787adf44b9dc2d0fd2d65d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0525d99a26e4cdb4c89905de7a7376e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   plumberRB: {fileID: 1126864940}
