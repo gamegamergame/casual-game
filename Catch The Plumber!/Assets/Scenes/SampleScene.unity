@@ -408,8 +408,8 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -537,24 +537,6 @@ Transform:
   - {fileID: 818100065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0525d99a26e4cdb4c89905de7a7376e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plumberRB: {fileID: 0}
-  plumberScript: {fileID: 0}
-  playerPos: {fileID: 1925842211}
-  livesText: {fileID: 1551769561}
-  distanceText: {fileID: 0}
-  plumberIndicator: {fileID: 1285820382}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +556,24 @@ MonoBehaviour:
   scrollSpeed: 10
   maxCatchupSpeed: 2000
   catchupThreshold: 5
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150d93e99787adf44b9dc2d0fd2d65d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plumberRB: {fileID: 1126864940}
+  plumberScript: {fileID: 1126864943}
+  playerPos: {fileID: 1925842211}
+  livesText: {fileID: 1551769561}
+  distanceText: {fileID: 1122892991}
+  plumberIndicator: {fileID: 1285820382}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781401229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0525d99a26e4cdb4c89905de7a7376e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 150d93e99787adf44b9dc2d0fd2d65d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   plumberRB: {fileID: 1126864940}
