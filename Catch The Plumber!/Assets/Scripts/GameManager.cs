@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     TMP_Text distanceText;
-
+       
     bool isSpawning;
 
     [SerializeField]
