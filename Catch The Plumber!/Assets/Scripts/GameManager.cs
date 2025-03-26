@@ -31,9 +31,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform camPos;
 
-    [SerializeField]
-    BoxCollider2D floor;
-
     bool isGamePaused;
 
     public int Lives
@@ -89,14 +86,6 @@ public class GameManager : MonoBehaviour
             plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
         }
     }
-
-    //void OnTriggerEnter2D()
-    //{
-    //float distance = Vector2.Distance(plumber.position, playerPos.position);
-
-    //lives--;
-    //StartCoroutine(SpawnDelay());
-    //}
 
     /// <summary>
     /// respawns plumber in the center of the screen stops all motion and deactivates collider after 2 seconds everything goes back to normal
