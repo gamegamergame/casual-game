@@ -28,18 +28,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     SpriteRenderer plumberIndicator;
 
-    Camera cam;
+    [SerializeField]
+    Transform camPos;
+
+    [SerializeField]
+    BoxCollider2D floor;
 
     bool isGamePaused;
 
+    public int Lives 
+    { 
+        get { return lives; } 
+        set { lives = value; } 
+    }  
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+// Start is called once before the first execution of Update after the MonoBehaviour is created
+void Start()
     {
         plumberIndicator.enabled = false;
 
-        cam = Camera.main;
+        //cam = Camera.main;
 
         isSpawning = true;
         StartCoroutine(SpawnDelay());
@@ -77,24 +86,23 @@ public class GameManager : MonoBehaviour
         if (isSpawning) 
         {
             plumberScript.currentState = PlumberScript.plumberStates.Spawning;
-            plumberRB.transform.position = new Vector2(cam.transform.position.x, cam.transform.position.y);
+            plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
         }
     }
 
-    void OnTriggerEnter2D()
-    {
+    //void OnTriggerEnter2D()
+    //{
         //float distance = Vector2.Distance(plumber.position, playerPos.position);
 
-        lives--;
-        StartCoroutine(SpawnDelay());
-
-    }
+        //lives--;
+        //StartCoroutine(SpawnDelay());
+    //}
 
     /// <summary>
     /// respawns plumber in the center of the screen stops all motion and deactivates collider after 2 seconds everything goes back to normal
     /// </summary>
     /// <returns></returns>
-    IEnumerator SpawnDelay()
+    public IEnumerator SpawnDelay()
     {
         CapsuleCollider2D plumberCollider = plumberRB.GetComponent<CapsuleCollider2D>();
 

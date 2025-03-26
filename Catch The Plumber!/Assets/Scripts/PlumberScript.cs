@@ -83,7 +83,7 @@ public class PlumberScript : MonoBehaviour
         {
 
         }
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     //void changeToJumpState()
