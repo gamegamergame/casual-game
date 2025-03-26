@@ -565,7 +565,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0525d99a26e4cdb4c89905de7a7376e3, type: 3}
+  m_Script: {fileID: 11500000, guid: f9fe39b8d4baf4a4f82917829ece8820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   plumberRB: {fileID: 1126864940}
@@ -575,7 +575,7 @@ MonoBehaviour:
   distanceText: {fileID: 1122892991}
   plumberIndicator: {fileID: 1285820382}
   camPos: {fileID: 519420032}
-  floor: {fileID: 0}
+  floor: {fileID: 1781401232}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

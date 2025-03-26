@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     TMP_Text distanceText;
-       
+
     bool isSpawning;
 
     [SerializeField]
@@ -36,15 +36,15 @@ public class GameManager : MonoBehaviour
 
     bool isGamePaused;
 
-    public int Lives 
-    { 
-        get { return lives; } 
-        set { lives = value; } 
-    }  
+    public int Lives
+    {
+        get { return lives; }
+        set { lives = value; }
+    }
 
 
-// Start is called once before the first execution of Update after the MonoBehaviour is created
-void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         plumberIndicator.enabled = false;
 
@@ -83,7 +83,7 @@ void Start()
         }
 
         //make sure the plumber follows the camera as he is spawning
-        if (isSpawning) 
+        if (isSpawning)
         {
             plumberScript.currentState = PlumberScript.plumberStates.Spawning;
             plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
@@ -92,10 +92,10 @@ void Start()
 
     //void OnTriggerEnter2D()
     //{
-        //float distance = Vector2.Distance(plumber.position, playerPos.position);
+    //float distance = Vector2.Distance(plumber.position, playerPos.position);
 
-        //lives--;
-        //StartCoroutine(SpawnDelay());
+    //lives--;
+    //StartCoroutine(SpawnDelay());
     //}
 
     /// <summary>
