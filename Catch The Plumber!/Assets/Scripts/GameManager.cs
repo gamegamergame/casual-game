@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform camPos;
 
+    [SerializeField]
+    SpriteRenderer plumberSpriteRenderer;
+
+    private bool isFlashing;
+
     bool isGamePaused;
 
     public int Lives
@@ -84,6 +89,12 @@ public class GameManager : MonoBehaviour
         {
             plumberScript.currentState = PlumberScript.plumberStates.Spawning;
             plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
+
+            // Start the flashing effect when spawning
+            if (!isFlashing)
+            {
+                StartCoroutine(FlashDuringSpawning());
+            }
         }
     }
 
@@ -111,6 +122,39 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.5f);
 
+        // Stop the flashing once spawning is complete
         isSpawning = false;
+        isFlashing = false;
+        StopCoroutine(FlashDuringSpawning());
+        ResetPlumberOpacity();
+    }
+
+    // Coroutine to handle flashing effect during spawning
+    private IEnumerator FlashDuringSpawning()
+    {
+        isFlashing = true;
+
+        float flashDuration = 0.2f; // Interval between flashes
+        float nextFlashTime = Time.time + flashDuration;
+
+        while (isSpawning)
+        {
+            // Toggle opacity between 0 and 1 to create the flashing effect
+            if (Time.time >= nextFlashTime)
+            {
+                Color currentColor = plumberSpriteRenderer.color;
+                plumberSpriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a == 1f ? 0.7f : 1f);
+                nextFlashTime = Time.time + flashDuration;
+            }
+
+            yield return null;
+        }
+    }
+
+    // Reset opacity to normal when the flashing stops
+    private void ResetPlumberOpacity()
+    {
+        Color currentColor = plumberSpriteRenderer.color;
+        plumberSpriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
     }
 }

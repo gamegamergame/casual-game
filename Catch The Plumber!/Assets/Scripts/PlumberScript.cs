@@ -62,10 +62,10 @@ public class PlumberScript : MonoBehaviour
                 timer = 1.5f;
             }
         }
-        
+
 
         //adds a constant force towards the right
-        if (currentState == plumberStates.Running) 
+        if (currentState == plumberStates.Running)
         {
             rb.AddForce(new Vector2(runSpeed, 0));
         }

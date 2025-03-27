@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     float speed;
 
     const float floorPos = -4; 
-    const float cielingPos = 4.5f;
+    const float cielingPos = 10f;
 
     [SerializeField]
     Transform leftWall;

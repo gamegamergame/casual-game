@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject objectToSpawn;  // Assign your prefab in the Inspector
     public Transform player;  // Reference to the player

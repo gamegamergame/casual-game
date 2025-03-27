@@ -3,12 +3,13 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
-    public float leftBoundary = 2f; // Distance from left edge before camera moves
-    public float rightBoundary = 2f; // Distance from right edge before camera moves
-    public float smoothSpeed = 5f;
-    public float scrollSpeed = 100f; // Constant auto-scroll speed
-    public float maxCatchupSpeed = 200f; // Maximum speed to catch up if player moves too fast
-    public float catchupThreshold = 5f; // Distance threshold before boosting speed
+    public float baseScrollSpeed = 5f; // Base auto-scroll speed
+    public float pushSpeed = 10f; // Additional speed when player is near the right edge
+    public float rightBoundary = 2f; // Distance from right edge before pushing
+    public float smoothSpeed = 5f; // Camera smoothing
+
+    public Transform[] backgrounds; // Array of background elements
+    public float backgroundWidth = 10f; // Width of each background segment
 
     private float halfScreenWidth;
 
@@ -21,38 +22,44 @@ public class CameraFollow : MonoBehaviour
     {
         if (player == null) return;
 
-        float cameraLeft = transform.position.x - halfScreenWidth;
         float cameraRight = transform.position.x + halfScreenWidth;
         float playerX = player.position.x;
 
         Vector3 targetPosition = transform.position;
 
-        // Calculate how far the player is ahead of the camera center
-        float playerOffset = playerX - transform.position.x;
+        // Base scrolling speed
+        float currentSpeed = baseScrollSpeed;
 
-        // Adjust scroll speed dynamically
-        float dynamicScrollSpeed = scrollSpeed;
-        if (playerOffset > catchupThreshold)
+        // If player is near the right side, increase speed
+        if (playerX > cameraRight - rightBoundary)
         {
-            // If the player gets too far ahead, increase scroll speed up to maxCatchupSpeed
-            dynamicScrollSpeed = Mathf.Lerp(scrollSpeed, maxCatchupSpeed, (playerOffset - catchupThreshold) / catchupThreshold);
+            float pushFactor = (playerX - (cameraRight - rightBoundary)) / rightBoundary;
+            currentSpeed += pushFactor * pushSpeed;
         }
 
-        // Apply auto-scroll
-        targetPosition.x += dynamicScrollSpeed * Time.deltaTime;
-
-        if (playerX < cameraLeft + leftBoundary)
-        {
-            //targetPosition.x = playerX - leftBoundary + halfScreenWidth;
-        }
-        else if (playerX > cameraRight - rightBoundary)
-        {
-            targetPosition.x = playerX + rightBoundary - halfScreenWidth;
-        }
-
+        // Move the camera
+        targetPosition.x += currentSpeed * Time.deltaTime;
         targetPosition.y = transform.position.y; // Keep Y position unchanged
 
-        // Smoothly move camera towards target
+        // Smooth transition
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+
+        // Handle background looping
+        LoopBackgrounds();
+    }
+
+    void LoopBackgrounds()
+    {
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            Transform bg = backgrounds[i];
+
+            // If background is fully behind the camera, reposition it forward
+            if (bg.position.x < transform.position.x - halfScreenWidth - backgroundWidth)
+            {
+                float newX = bg.position.x + backgroundWidth * backgrounds.Length;
+                bg.position = new Vector3(newX, bg.position.y, bg.position.z);
+            }
+        }
     }
 }
