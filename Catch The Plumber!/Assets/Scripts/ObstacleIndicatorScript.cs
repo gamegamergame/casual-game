@@ -22,7 +22,8 @@ public class ObstacleIndicatorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (obstaclePos.position.x <= cam.transform.position.x + cam.pixelWidth/2)
+        //after obstacle has come into view of the camera
+        if (cam.transform.position.x + 10.5f >= transform.position.x)
         {
             sr.enabled = false;
         }

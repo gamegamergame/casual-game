@@ -27,6 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
         float randomY = Random.Range(minY + 1f, maxY);
         Vector2 spawnPosition = new Vector2(randomX, randomY);
 
-        Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        
+        manager.ObstacleList.Add(Instantiate(objectToSpawn, spawnPosition, Quaternion.identity));
     }
 }

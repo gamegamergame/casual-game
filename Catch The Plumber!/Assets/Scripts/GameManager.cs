@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform playerPos;
 
+    [SerializeField]
+    Transform ObstacleIndicatorSpawn;
+
     int lives = 3;
 
     public int Lives
@@ -56,10 +59,13 @@ public class GameManager : MonoBehaviour
 
     private bool isFlashing;
 
-    bool isGamePaused;
+    //bool isGamePaused;
 
+    [SerializeField]
+    public List<GameObject> obstacleList = new List<GameObject>();
 
-    List<GameObject> obstacleList = new List<GameObject>();
+    [SerializeField]
+    GameObject obstacleIndicator;
 
     public List<GameObject> ObstacleList
     {
@@ -78,7 +84,7 @@ public class GameManager : MonoBehaviour
         isSpawning = true;
         StartCoroutine(SpawnDelay());
 
-        isGamePaused = false;
+        //isGamePaused = false;
     }
 
     // Update is called once per frame
@@ -103,11 +109,13 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
         }
 
-        //if (playerPos.position.x < Camera.main.transform.position.x - (Camera.main.orthographicSize * Camera.main.aspect))
-        //{
-        //lives -= 100;
-        //}
 
+        foreach (GameObject obstacle in obstacleList) 
+        { 
+            Instantiate(obstacleIndicator, new Vector2(ObstacleIndicatorSpawn.position.x - 5, obstacle.transform.position.y) , Quaternion.identity);
+        }
+
+        //turn on the indicator if the plumber is offscreen
         if (plumberRB.transform.position.y > plumberIndicator.transform.position.y)
         {
             plumberIndicator.enabled = true;
