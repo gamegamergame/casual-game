@@ -585,6 +585,7 @@ MonoBehaviour:
   plumberIndicator: {fileID: 1285820382}
   camPos: {fileID: 519420032}
   plumberSpriteRenderer: {fileID: 1126864941}
+  obstacleList: []
   obstacleIndicator: {fileID: 7522957988113780871, guid: d7c71b35b82aa66448bf23a6e8583dc4, type: 3}
 --- !u!1 &619394800
 GameObject:
@@ -2406,7 +2407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
-  speed: 500
+  speed: 800
   leftWall: {fileID: 1937163975}
 --- !u!114 &1925842213
 MonoBehaviour:
