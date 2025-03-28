@@ -615,7 +615,7 @@ MonoBehaviour:
   - {fileID: 2040388093}
   - {fileID: 402356709}
   - {fileID: 1222395402}
-  backgroundWidth: 30
+  backgroundWidth: 29
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,13 +1640,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351225441}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 601dc7eaad8685c4e9381c9e5ea20480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - {fileID: 8618968769450710943, guid: 1d1e159d154cc8941b2d54b32cad6b89, type: 3}
+  - {fileID: 3787995425133288053, guid: 98e128587abbbb04d861fae40f2b1718, type: 3}
   player: {fileID: 1925842211}
   maxX: 15
   spawnInterval: 15

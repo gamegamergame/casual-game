@@ -6,6 +6,14 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     float powerLength = 5f;
 
+    [SerializeField]
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Plumber"))
@@ -26,6 +34,11 @@ public class PowerUp : MonoBehaviour
             // Change the Plumber's color to match the power-up's color
             Color powerUpColor = GetComponent<SpriteRenderer>().color; // Get color of the power-up
             StartCoroutine(ReducedBounciness(plumber, plumberRenderer, powerUpColor, rb));
+        }
+
+        if (CompareTag("DistanceBoost"))
+        {
+            gameManager.BonusDistance += 50;
         }
     }
 

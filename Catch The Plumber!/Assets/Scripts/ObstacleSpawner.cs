@@ -23,7 +23,7 @@ public class ObstacleSpawner : MonoBehaviour
         float minY = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).y;
         float maxY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
 
-        float randomX = Random.Range(player.position.x + 15, player.position.x + 15 + maxX);
+        float randomX = Random.Range(player.position.x + 25, player.position.x + 25 + maxX);
         float randomY = Random.Range(minY + 1f, maxY);
         Vector2 spawnPosition = new Vector2(randomX, randomY);
 

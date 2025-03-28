@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour
         set { lives = value; }
     }
 
+    float distance;
+
+    float bonusDistance = 0;
+
+    public float BonusDistance
+    {
+        get { return bonusDistance; }
+        set { bonusDistance = value; }
+    }
+
     [SerializeField]
     List<SpriteRenderer> heartUI = new List<SpriteRenderer>();
 
@@ -74,8 +84,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distance = Vector2.Distance(Vector2.zero, plumberRB.transform.position) + BonusDistance;
         livesText.text = "Lives: " + lives;
-        distanceText.text = "Distance: " + Vector2.Distance(Vector2.zero, plumberRB.transform.position).ToString("0");
+        distanceText.text = "Distance: " + distance.ToString("0");
 
         //update hp loss
         if (lives == 2)
