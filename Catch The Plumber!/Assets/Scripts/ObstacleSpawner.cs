@@ -7,8 +7,13 @@ public class ObstacleSpawner : MonoBehaviour
     public float maxX;  // Define spawn boundaries
     public float spawnInterval = 2f; // Time between spawns
 
+    GameManager manager;
+
+
     void Start()
     {
+        manager = new GameManager();
+
         InvokeRepeating(nameof(SpawnObject), 0f, spawnInterval);
     }
 

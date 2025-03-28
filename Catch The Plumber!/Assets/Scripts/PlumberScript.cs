@@ -13,7 +13,7 @@ public class PlumberScript : MonoBehaviour
     [SerializeField]
     float jumpSpeed;
 
-    float timer = 1.5f;
+    float timer = 1f;
 
     [SerializeField]
     float shakeIntensity = 0.05f;
@@ -62,7 +62,10 @@ public class PlumberScript : MonoBehaviour
                 timer = 1.5f;
             }
         }
-
+        else
+        {
+            timer = 1.5f;
+        }
 
         //adds a constant force towards the right
         if (currentState == plumberStates.Running)

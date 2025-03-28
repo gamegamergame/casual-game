@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,15 @@ public class GameManager : MonoBehaviour
     Transform playerPos;
 
     int lives = 3;
+
+    public int Lives
+    {
+        get { return lives; }
+        set { lives = value; }
+    }
+
+    [SerializeField]
+    List<SpriteRenderer> heartUI = new List<SpriteRenderer>();
 
     [SerializeField]
     TMP_Text livesText;
@@ -38,10 +48,13 @@ public class GameManager : MonoBehaviour
 
     bool isGamePaused;
 
-    public int Lives
+
+    List<GameObject> obstacleList = new List<GameObject>();
+
+    public List<GameObject> ObstacleList
     {
-        get { return lives; }
-        set { lives = value; }
+        get { return obstacleList; }
+        set { obstacleList = value; }
     }
 
 
@@ -62,10 +75,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         livesText.text = "Lives: " + lives;
-        distanceText.text = "Distance: " + Vector2.Distance(Vector2.zero, plumberRB.transform.position);
+        distanceText.text = "Distance: " + Vector2.Distance(Vector2.zero, plumberRB.transform.position).ToString("0");
 
-        if (lives <= 0)
+        //update hp loss
+        if (lives == 2)
         {
+            heartUI[2].color = Color.gray;
+        }
+        else if (lives == 1) 
+        {
+            heartUI[1].color = Color.gray;
+        }
+        else if (lives <= 0)
+        {
+            heartUI[0].color = Color.gray;
             SceneManager.LoadScene(1);
         }
 
@@ -115,7 +138,7 @@ public class GameManager : MonoBehaviour
 
         plumberCollider.enabled = false;
 
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(1);
 
         plumberCollider.enabled = true;
         plumberRB.gravityScale = 1;

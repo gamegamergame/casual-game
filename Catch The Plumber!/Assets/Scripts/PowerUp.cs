@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour
 {
+    [SerializeField]
+    float powerLength = 5f;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Plumber"))
@@ -31,7 +34,7 @@ public class PowerUp : MonoBehaviour
         float originalBounciness = rb.sharedMaterial.bounciness;
         rb.sharedMaterial.bounciness = 0f; // Set lower
         plumberRenderer.color = powerUpColor; // Change plumber to powerup color
-        yield return new WaitForSeconds(5f); // Wait for 5 seconds
+        yield return new WaitForSeconds(powerLength); // Wait for 5 seconds
         plumberRenderer.color = Color.white; // Reset to original color
         rb.sharedMaterial.bounciness = 0.7f; // Reset to normal
     }
