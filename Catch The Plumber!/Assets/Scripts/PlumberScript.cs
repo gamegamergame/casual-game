@@ -18,6 +18,10 @@ public class PlumberScript : MonoBehaviour
     [SerializeField]
     float shakeIntensity = 0.05f;
 
+    SpriteRenderer plumberRenderer;
+
+    public int extraBounces = 0;
+
     public enum plumberStates
     {
         Running,
@@ -32,6 +36,7 @@ public class PlumberScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         plumberCollider = GetComponent<CapsuleCollider2D>();
+        plumberRenderer = GetComponent<SpriteRenderer>();
         currentState = plumberStates.Spawning;
 
     }
@@ -87,6 +92,19 @@ public class PlumberScript : MonoBehaviour
 
         }
         //Debug.Log(currentState);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (extraBounces > 0 && (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Obstacle")))
+        {
+            extraBounces--;
+            if (extraBounces <= 0 && rb.sharedMaterial != null)
+            {
+                rb.sharedMaterial.bounciness = 0.6f;
+                plumberRenderer.color = Color.white;
+            }
+        }
     }
 
     //void changeToJumpState()

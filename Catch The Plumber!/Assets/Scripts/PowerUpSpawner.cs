@@ -18,11 +18,25 @@ public class PowerUpSpawner : MonoBehaviour
         float minY = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).y;
         float maxY = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
 
-        float randomX = Random.Range(player.position.x + 15, player.position.x + 15 + maxX);
+        float randomX = Random.Range(player.position.x + 25, player.position.x + 25 + maxX);
         float randomY = Random.Range(minY + 1f, maxY);
         Vector2 spawnPosition = new Vector2(randomX, randomY);
 
-        GameObject objectToSpawn = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
-        Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        if (!IsOverlapping(spawnPosition))
+        {
+            GameObject objectToSpawn = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+            Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            SpawnObject(); // Recursive call to try again
+        }
+    }
+
+    bool IsOverlapping(Vector2 position)
+    {
+        // Perform a 2D overlap check (adjust size depending on your object)
+        Collider2D overlap = Physics2D.OverlapCircle(position, 0.5f);
+        return overlap != null;
     }
 }

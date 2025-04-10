@@ -3,15 +3,18 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
-    public float baseScrollSpeed = 5f; // Base auto-scroll speed
-    public float pushSpeed = 10f; // Additional speed when player is near the right edge
-    public float rightBoundary = 2f; // Distance from right edge before pushing
+    public float baseScrollSpeed = 50f; // Base auto-scroll speed
     public float smoothSpeed = 5f; // Camera smoothing
 
     public Transform[] backgrounds; // Array of background elements
     public float backgroundWidth = 10f; // Width of each background segment
 
+    private int distanceCheckpoint = 0; // Tracks the last 50-mark reached
+
     private float halfScreenWidth;
+
+    [SerializeField]
+    GameManager gameManager;
 
     void Start()
     {
@@ -22,6 +25,14 @@ public class CameraFollow : MonoBehaviour
     {
         if (player == null) return;
 
+        // Check if we passed a new 50-point threshold
+        int currentCheckpoint = Mathf.FloorToInt(gameManager.Distance / 50f);
+        if (currentCheckpoint > distanceCheckpoint)
+        {
+            distanceCheckpoint = currentCheckpoint;
+            baseScrollSpeed = Mathf.Min(baseScrollSpeed + 25f, 200f);
+        }
+
         float cameraRight = transform.position.x + halfScreenWidth;
         float playerX = player.position.x;
 
@@ -29,13 +40,6 @@ public class CameraFollow : MonoBehaviour
 
         // Base scrolling speed
         float currentSpeed = baseScrollSpeed;
-
-        // If player is near the right side, increase speed
-        if (playerX > cameraRight - rightBoundary)
-        {
-            float pushFactor = (playerX - (cameraRight - rightBoundary)) / rightBoundary;
-            currentSpeed += pushFactor * pushSpeed;
-        }
 
         // Move the camera
         targetPosition.x += currentSpeed * Time.deltaTime;

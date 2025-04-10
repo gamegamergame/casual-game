@@ -9,9 +9,13 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
 
+    [SerializeField]
+    PlumberScript plumberScript;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        plumberScript = FindObjectOfType<PlumberScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,28 +31,25 @@ public class PowerUp : MonoBehaviour
     {
         Rigidbody2D rb = plumber.GetComponent<Rigidbody2D>();
         SpriteRenderer plumberRenderer = plumber.GetComponent<SpriteRenderer>(); // Get SpriteRenderer for color change
+        Color powerUpColor = GetComponent<SpriteRenderer>().color; // Get color of the power-up
         if (rb == null || plumberRenderer == null) return;
 
         if (CompareTag("LessBounce")) // Check if the power-up is tagged "LessBounce"
         {
             // Change the Plumber's color to match the power-up's color
-            Color powerUpColor = GetComponent<SpriteRenderer>().color; // Get color of the power-up
-            StartCoroutine(ReducedBounciness(plumber, plumberRenderer, powerUpColor, rb));
+            //StartCoroutine(ReducedBounciness(plumber, plumberRenderer, powerUpColor, rb));
         }
 
         if (CompareTag("DistanceBoost"))
         {
             gameManager.BonusDistance += 50;
         }
-    }
 
-    private IEnumerator ReducedBounciness(GameObject plumber, SpriteRenderer plumberRenderer, Color powerUpColor, Rigidbody2D rb)
-    {
-        float originalBounciness = rb.sharedMaterial.bounciness;
-        rb.sharedMaterial.bounciness = 0f; // Set lower
-        plumberRenderer.color = powerUpColor; // Change plumber to powerup color
-        yield return new WaitForSeconds(powerLength); // Wait for 5 seconds
-        plumberRenderer.color = Color.white; // Reset to original color
-        rb.sharedMaterial.bounciness = 0.7f; // Reset to normal
+        if (CompareTag("ExtraBounce"))
+        {
+            plumberScript.extraBounces = 5;
+            rb.sharedMaterial.bounciness = 1.2f;
+            plumberRenderer.color = powerUpColor;
+        }
     }
 }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6490336683451134328}
   - component: {fileID: 3148009063925049995}
   m_Layer: 0
-  m_Name: Less Bounce Power Up
-  m_TagString: LessBounce
+  m_Name: Extra Bounce PowerUp
+  m_TagString: ExtraBounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerLength: 5
   gameManager: {fileID: 0}
+  plumberScript: {fileID: 0}

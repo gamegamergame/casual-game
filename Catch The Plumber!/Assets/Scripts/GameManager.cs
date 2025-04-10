@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     PlumberScript plumberScript;
+
+    [SerializeField]
+    HighscoresList highscoreList;
 
     [SerializeField]
     Transform playerPos;
@@ -28,6 +32,12 @@ public class GameManager : MonoBehaviour
     }
 
     float distance;
+
+    public float Distance
+    {
+        get { return distance; }
+        set { distance = value; }
+    }
 
     float bonusDistance = 0;
 
@@ -106,6 +116,7 @@ public class GameManager : MonoBehaviour
         else if (lives <= 0)
         {
             heartUI[0].color = Color.gray;
+            AddNewScore(distance);
             SceneManager.LoadScene(1);
         }
 
@@ -198,5 +209,42 @@ public class GameManager : MonoBehaviour
     {
         Color currentColor = plumberSpriteRenderer.color;
         plumberSpriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+    }    
+
+    //Saves highscores to JSON
+    public static void SaveHighscores(HighscoresList data)
+    {
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("Highscores", json);
+        PlayerPrefs.Save();
     }
+
+    //Loads highscores from JSON
+    public static HighscoresList LoadHighscores()
+    {
+        string json = PlayerPrefs.GetString("Highscores", "");
+        if (string.IsNullOrEmpty(json))
+            return new HighscoresList(); // return empty list if nothing saved
+
+        return JsonUtility.FromJson<HighscoresList>(json);
+    }
+
+    //For adding new scores to the top 5 list
+    public void AddNewScore(float newScore)
+    {
+        HighscoresList data = LoadHighscores();
+
+        // Add new score
+        data.scores.Add(newScore);
+
+        // Sort descending
+        data.scores = data.scores.OrderByDescending(score => score).ToList();
+
+        // Keep top 5
+        if (data.scores.Count > 5)
+            data.scores = data.scores.Take(5).ToList();
+
+        SaveHighscores(data);
+    }
+
 }

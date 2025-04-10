@@ -6,6 +6,8 @@ TagManager:
   tags:
   - LessBounce
   - DistanceBoost
+  - ExtraBounce
+  - Obstacle
   layers:
   - Default
   - TransparentFX
