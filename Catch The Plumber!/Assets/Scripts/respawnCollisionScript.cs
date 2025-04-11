@@ -10,6 +10,6 @@ public class respawnCollisionScript : MonoBehaviour
     {
         //float distance = Vector2.Distance(plumber.position, playerPos.position);
         gameManager.Lives--;
-        StartCoroutine(gameManager.SpawnDelay());
+        StartCoroutine(gameManager.OnHPLoss());
     }
 }

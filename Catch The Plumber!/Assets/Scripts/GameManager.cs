@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TMP_Text distanceText;
 
-    bool isSpawning;
+    public bool isSpawning;
 
     [SerializeField]
     SpriteRenderer plumberIndicator;
@@ -91,10 +91,13 @@ public class GameManager : MonoBehaviour
 
         //cam = Camera.main;
 
-        isSpawning = true;
-        StartCoroutine(SpawnDelay());
 
-        //isGamePaused = false;
+        //starts as game paused
+        Time.timeScale = 0f;
+
+
+        //isSpawning = true;
+        //StartCoroutine(SpawnDelay());
     }
 
     // Update is called once per frame
@@ -141,7 +144,7 @@ public class GameManager : MonoBehaviour
         if (isSpawning)
         {
             plumberScript.currentState = PlumberScript.plumberStates.Spawning;
-            plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
+            //plumberRB.transform.position = new Vector2(camPos.position.x, camPos.position.y);
 
             // Start the flashing effect when spawning
             if (!isFlashing)
@@ -181,6 +184,31 @@ public class GameManager : MonoBehaviour
         StopCoroutine(FlashDuringSpawning());
         ResetPlumberOpacity();
     }
+
+    public IEnumerator OnHPLoss()
+    {
+        CapsuleCollider2D plumberCollider = plumberRB.GetComponent<CapsuleCollider2D>();
+
+        isSpawning = true;
+
+
+        //yield return new WaitForSecondsRealtime(0.5f);
+
+        plumberRB.AddForceY(1000f);
+        //plumberRB.AddForceX(1000f);
+
+
+
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        // Stop the flashing once spawning is complete
+        isSpawning = false;
+        isFlashing = false;
+        StopCoroutine(FlashDuringSpawning());
+        ResetPlumberOpacity();
+    }
+
 
     // Coroutine to handle flashing effect during spawning
     private IEnumerator FlashDuringSpawning()

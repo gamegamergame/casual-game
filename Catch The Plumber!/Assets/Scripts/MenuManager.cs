@@ -1,16 +1,29 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
+    GameManager gameManager;
+
+    [SerializeField]
     TMP_Text highscoresText;
+
+    [SerializeField]
+    GameObject pauseButton;
+
+    [SerializeField]
+    GameObject exitButton;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ShowHighscores();
+
+        //pauseButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +40,34 @@ public class MenuManager : MonoBehaviour
     public void OnExit()
     {
         Application.Quit();
+    }
+
+    public void OnPlay()
+    {
+        gameManager.isSpawning = true;
+        StartCoroutine(gameManager.SpawnDelay());
+    }
+
+    //pauses game
+    public void OnPause()
+    {
+        if (Time.timeScale < 1.0f)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
+    }
+    public void OnPauseMenu()
+    {
+        exitButton.SetActive(!exitButton.activeSelf);
+
+        //if ()
+        //{
+        //}
+
     }
 
     //Highscore display at the end screen
