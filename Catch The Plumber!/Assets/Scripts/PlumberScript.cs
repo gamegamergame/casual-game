@@ -7,8 +7,15 @@ public class PlumberScript : MonoBehaviour
 
     CapsuleCollider2D plumberCollider;
 
+
     [SerializeField]
-    float runSpeed;
+    Vector2 centerOfMass;
+
+    [SerializeField]
+    float runSpeed;  
+    
+    [SerializeField]
+    float standSpeed;
 
     [SerializeField]
     float jumpSpeed;
@@ -25,6 +32,7 @@ public class PlumberScript : MonoBehaviour
     public enum plumberStates
     {
         Running,
+        Standing,
         Jumping,
         Spawning
     }
@@ -38,6 +46,8 @@ public class PlumberScript : MonoBehaviour
         plumberCollider = GetComponent<CapsuleCollider2D>();
         plumberRenderer = GetComponent<SpriteRenderer>();
         currentState = plumberStates.Spawning;
+
+        rb.centerOfMass = centerOfMass;
 
     }
 
@@ -59,6 +69,8 @@ public class PlumberScript : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
+            //currentState = plumberStates.Standing;
+
             //if on platform after 1.5 seconds switch to jump state
             if (timer < 0)
             {
@@ -78,12 +90,27 @@ public class PlumberScript : MonoBehaviour
             rb.AddForce(new Vector2(runSpeed, 0));
         }
 
+        //balances out the plumber 
+        else if (currentState == plumberStates.Standing)
+        {
+            /*if (transform.rotation.z > 1)
+            {
+                //rb.AddTorque(standSpeed);
+            }
+            else if (transform.rotation.z < 1)
+            {
+                //rb.AddTorque(standSpeed);
+            }
+            else
+            {
+                currentState = plumberStates.Jumping;
+            }*/
+        }
+
         //adds a constant force towards the right
         else if (currentState == plumberStates.Jumping)
         {
             rb.AddForce(new Vector2(jumpSpeed, jumpSpeed));
-
-            //changeToJumpState();
             currentState = plumberStates.Running;
         }
 
@@ -91,7 +118,6 @@ public class PlumberScript : MonoBehaviour
         {
 
         }
-        //Debug.Log(currentState);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -106,8 +132,4 @@ public class PlumberScript : MonoBehaviour
             }
         }
     }
-
-    //void changeToJumpState()
-    //{
-    //}
 }

@@ -98,6 +98,9 @@ public class GameManager : MonoBehaviour
 
         //isSpawning = true;
         //StartCoroutine(SpawnDelay());
+
+        plumberRB.sharedMaterial.bounciness = 0.6f;
+
     }
 
     // Update is called once per frame
@@ -200,7 +203,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         // Stop the flashing once spawning is complete
         isSpawning = false;
