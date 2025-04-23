@@ -17,6 +17,15 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     GameObject exitButton;
 
+    [SerializeField]
+    GameObject instructionsButton;
+
+    [SerializeField]
+    GameObject closeButton;
+
+    [SerializeField]
+    GameObject instuctionsPanel;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,11 +72,20 @@ public class MenuManager : MonoBehaviour
     public void OnPauseMenu()
     {
         exitButton.SetActive(!exitButton.activeSelf);
+        instructionsButton.SetActive(!instructionsButton.activeSelf);
 
         //if ()
         //{
         //}
 
+    }public void OnInstructions()
+    {
+        instuctionsPanel.SetActive(true);
+    }
+
+    public void OnClose()
+    {
+        instuctionsPanel.SetActive(false);
     }
 
     //Highscore display at the end screen
