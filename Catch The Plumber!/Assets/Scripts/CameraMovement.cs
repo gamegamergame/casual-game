@@ -30,7 +30,9 @@ public class CameraFollow : MonoBehaviour
         if (currentCheckpoint > distanceCheckpoint)
         {
             distanceCheckpoint = currentCheckpoint;
-            baseScrollSpeed = Mathf.Min(baseScrollSpeed + 25f, 200f);
+
+            //removing the added speed
+            //baseScrollSpeed = Mathf.Min(baseScrollSpeed + 25f, 200f);
         }
 
         float cameraRight = transform.position.x + halfScreenWidth;

@@ -25,8 +25,8 @@ public class ObstacleIndicatorScript : MonoBehaviour
     {
         camXPos = cam.transform.position.x + 13f;
 
-        Debug.Log(camXPos);
-        Debug.Log(obstaclePos.position.x);
+        //Debug.Log(camXPos);
+        //Debug.Log(obstaclePos.position.x);
         transform.position = new Vector2(camXPos, transform.position.y);
 
 

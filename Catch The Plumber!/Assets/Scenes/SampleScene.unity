@@ -2729,7 +2729,8 @@ MonoBehaviour:
   objectToSpawn: {fileID: 4661200327488229375, guid: b3330e3a2ef8b6647ba8ac8fe0b516fa, type: 3}
   player: {fileID: 1925842211}
   maxX: 5
-  spawnInterval: 10
+  spawnInterval: 15
+  spawnReductionTimer: 5
 --- !u!4 &1351225443
 Transform:
   m_ObjectHideFlags: 0

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Super Jump Power Up Sprite_0: -7420972094132203441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

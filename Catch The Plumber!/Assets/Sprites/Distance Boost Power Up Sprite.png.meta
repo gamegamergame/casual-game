@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Distance Boost Power Up Sprite_0: -8758468668967085666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
