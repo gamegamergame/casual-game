@@ -26,6 +26,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     GameObject instuctionsPanel;
 
+    [SerializeField]
+    GameObject restartButton;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +76,7 @@ public class MenuManager : MonoBehaviour
     {
         exitButton.SetActive(!exitButton.activeSelf);
         instructionsButton.SetActive(!instructionsButton.activeSelf);
+        restartButton.SetActive(!restartButton.activeSelf);
 
         //if ()
         //{

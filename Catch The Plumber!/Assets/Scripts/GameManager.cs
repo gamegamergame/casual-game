@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
 
         //yield return new WaitForSecondsRealtime(0.5f);
 
-        plumberRB.AddForceY(1000f);
+        plumberRB.AddForceY(1500f);
         //plumberRB.AddForceX(1000f);
 
 
